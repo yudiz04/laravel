@@ -12,6 +12,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +69,10 @@ Route::get('/home', [HomeController::class, 'index']);
 
 Route::group(['middleware' => ['authcustomer','customer']], function(){
     Route::resource('cart', CartController::class);
+    Route::resource('transaction', TransactionController::class);
+    
     
     Route::get('list/{product}', [LandingController::class, 'list']);
 });
+
+Route::get('/sukses', [TransactionController::class,'sukses']);

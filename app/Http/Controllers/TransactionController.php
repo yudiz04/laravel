@@ -14,7 +14,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        
+        return view('payment/index');
     }
 
     /**
@@ -95,5 +95,9 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    public function sukses(){
+        return view('payment/sukses');
     }
 }
