@@ -1,0 +1,30 @@
+body {
+    padding-bottom: 25%;
+}
+
+/* Sukses */
+#sukses .fas {
+    margin-top: 250px;
+    color: coral;
+    font-size: 150px;
+}
+
+h3 {
+    padding-top: 20px;
+}
+
+h5 {
+    color: coral;
+}
+
+#sukses .button {
+    margin-top: 25px;
+    background-color: rgba(255, 153, 0, 0.795);
+    border: none;
+    border-radius: 10px;
+    width: 15%;
+    height: 40px;
+    color: whitesmoke;
+}
+
+/* Akhir Sukses */

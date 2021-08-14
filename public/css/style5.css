@@ -1,0 +1,50 @@
+body {
+    padding-bottom: 5%;
+}
+
+/* metode */
+
+#metode .row1 {
+    margin-left: 24%;
+}
+#metode .col1 {
+    margin-top: 100px;
+}
+
+h4 {
+    color: grey;
+}
+
+#metode .row2 {
+    width: 50%;
+    height: 70px;
+    margin-left: 25%;
+    padding-top: 20px;
+}
+
+#metode .btn {
+    border-radius: 10px;
+    font-size: 12px;
+    
+}
+
+#metode .row3 {
+    text-align: center;
+}
+
+#metode .col2 {
+    border: solid tomato;
+    height: 100px;
+    padding-top: 35px;
+}
+
+#metode .button {
+    margin-top: 25px;
+    background-color: rgba(255, 153, 0, 0.795);
+    border: none;
+    border-radius: 10px;
+    width: 13%;
+    height: 40px;
+    color: whitesmoke;
+}
+/* Akhir metode */

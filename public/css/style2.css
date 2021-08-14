@@ -1,0 +1,104 @@
+body {
+    padding-bottom: 5%;
+}
+
+/* Navbar */
+.text0 {
+    padding-left: 0px;
+}
+
+.navbar .mark {
+    background-color: rgba(255, 153, 0, 0.795);
+}
+
+.plc {
+    font-size       : small;
+    color           : tomato;
+    text-align      : left;
+    width           : 400px;
+    padding         : 5px;
+    border-radius   : 10px;
+    border          : 1px solid tomato;
+    background-color: transparent;
+}
+
+#header .btn {
+    border-radius: 10px;
+    padding      : 5px 20px;
+}
+/* Akhir navbar */
+
+/* List product */
+
+#list-product .fas {
+    color: tomato;
+}
+
+#list-product .text1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding    : 20px 0px;
+    font-size  : 16px;
+    margin-top: 100px;
+}
+ 
+#list-product .text3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding    : 20px 0px;
+    font-size  : 20px;
+    margin-top: 5px;
+}
+
+#list-product .card {
+    border-radius: 20px;
+}
+
+#list-product .btn-primary {
+    background-color: transparent;
+    color: tomato;
+    border-color: tomato;
+}
+/* AKhir list product */
+
+/* Footer */
+#footer .container {
+    margin-top: 30px;
+    background-color: rgba(255, 153, 0, 0.795);
+    width: 100%;
+    height: 300px;
+    border-radius: 60px;
+}
+
+#footer .row9 {
+    padding-top: 20px;
+}
+
+#footer .kaki{
+    text-align: justify;
+    padding-right: 50px;
+    font-size: 16px;
+}
+
+#footer .col-lg-2 {
+    padding-top: 25px;
+}
+
+#footer h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+#footer h5 {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+hr {
+    color: black;
+}
+
+#footer .imgf {
+    width: 30px;
+    height: auto;
+}
+
+/* AKhir footer */

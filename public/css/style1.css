@@ -1,0 +1,256 @@
+body {
+    padding-bottom: 5%;
+}
+
+/* Navbar */
+.text0 {
+    padding-left: 0px;
+}
+
+.navbar .mark {
+    background-color: rgba(255, 153, 0, 0.795);
+}
+
+.plc {
+    font-size       : small;
+    color           : tomato;
+    text-align      : left;
+    width           : 400px;
+    padding         : 5px;
+    border-radius   : 10px;
+    border          : 1px solid tomato;
+    background-color: transparent;
+}
+
+#header .btn {
+    border-radius: 10px;
+    padding      : 5px 20px;
+}
+
+/* Akhir Navbar */
+
+/* banner1 */
+.row1 {
+    margin-top      : 100px;
+    /* margin-bottom: 20px; */
+    background      : linear-gradient(to right, rgba(255, 153, 0, 0.795), rgba(168, 168, 166, 0.582));
+    border-radius   : 60px;
+    width           : auto;
+    height          : auto;
+}
+
+.text1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size  : 22px;
+    padding    : 80px 0px 20px 80px;
+    color      : white;
+    font-weight: bold;
+}
+
+#banner1 .btn {
+    font-size       : small;
+    color           : white;
+    text-align      : left;
+    width           : 200px;
+    height          : auto;
+    padding         : 5px 10px;
+    border-radius   : 10px;
+    border          : 1px solid white;
+    background-color: transparent;
+    margin-left     : 80px;
+}
+
+#banner1 .fas {
+    float      : right;
+    line-height: 20px;
+}
+
+.img {
+    width          : 400px;
+    height         : 300px;
+    object-fit     : none;
+    object-position: 10% 10%;
+}
+
+/* Akhir banner */
+
+/* Kategori */
+
+#kategori .text2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size  : 20px;
+    padding    : 80px 0px 20px 0px;
+
+}
+
+#kategori .row2 {
+    margin-top: 20px;
+}
+
+#kategori .row3 {
+    margin-top      : 20px;
+    background-color: rgb(229, 226, 226);
+    border-radius   : 20px;
+    width           : auto;
+    height          : auto;
+}
+
+#kategori .row-icon {
+    text-align : center;
+    padding-top: 10px;
+}
+
+#kategori .row-text {
+    text-align: center;
+}
+
+#kategori .btn-outline-light {
+    background-color: transparent;
+    border          : none;
+    color           : tomato;
+    font-weight     : 500;
+    padding-bottom  : 10px;
+}
+
+/* Akhir kategori */
+
+/* Barang terlaris */
+#barang-terlaris .text3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding    : 20px 0px;
+    font-size  : 20px;
+}
+
+#barang-terlaris .btn-outline-warning {
+    font-size       : 14px;
+    font-family     : Verdana, Geneva, Tahoma, sans-serif;
+    color           : rgb(105, 102, 102);
+    background-color: transparent;
+    border          : none;
+    width           : 150px;
+    height          : auto;
+    margin-top      : 30px;
+}
+
+#barang-terlaris .card {
+    border-radius: 20px;
+}
+
+.img-terlaris {
+    border-radius: 20px;
+}
+
+#barang-terlaris .btn-primary {
+    background-color: transparent;
+    color           : tomato;
+    border-color    : tomato;
+}
+
+/* Akhir barang terlaris */
+
+/* Rekomendasi */
+#rekomendasi .text4 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding    : 20px 0px;
+    font-size  : 20px;
+}
+
+#rekomendasi .card {
+    border-radius: 20px;
+}
+
+#rekomendasi .btn-primary {
+    background-color: transparent;
+    color           : tomato;
+    border-color    : tomato;
+}
+
+#rekomendasi .btn-outline-warning {
+    font-size       : 14px;
+    font-family     : Verdana, Geneva, Tahoma, sans-serif;
+    color           : rgb(105, 102, 102);
+    background-color: transparent;
+    border          : none;
+    width           : 150px;
+    height          : auto;
+    margin-top      : 30px;
+}
+
+/* Akhir Rekomendasi */
+
+/* Promo */
+#promo .text3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding    : 20px 0px;
+    font-size  : 20px;
+}
+
+#promo .btn-outline-warning {
+    font-size       : 14px;
+    font-family     : Verdana, Geneva, Tahoma, sans-serif;
+    color           : rgb(105, 102, 102);
+    background-color: transparent;
+    border          : none;
+    width           : 150px;
+    height          : auto;
+    margin-top      : 30px;
+}
+
+#promo .card {
+    border-radius: 20px;
+}
+
+.img-terlaris {
+    border-radius: 20px;
+}
+
+#promo .btn-primary {
+    background-color: transparent;
+    color: tomato;
+    border-color: tomato;
+}
+/* Akhir promo */
+
+/* Footer */
+#footer .container {
+    margin-top: 30px;
+    background-color: rgba(255, 153, 0, 0.795);
+    width: 100%;
+    height: 300px;
+    border-radius: 60px;
+}
+
+#footer .row9 {
+    padding-top: 20px;
+}
+
+#footer .kaki{
+    text-align: justify;
+    padding-right: 50px;
+    font-size: 16px;
+}
+
+#footer .col-lg-2 {
+    padding-top: 25px;
+}
+
+#footer h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+#footer h5 {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+hr {
+    color: black;
+}
+
+#footer .imgf {
+    width: 30px;
+    height: auto;
+}
+
+/* Akhir footer */
