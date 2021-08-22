@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\Number;
+use App\Models\Cart;
+use App\Models\Notification;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -14,7 +20,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('payment/index');
+        
+
     }
 
     /**
@@ -33,23 +40,69 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
+        //return $request;
         $request -> validate([
-            'courier_id' => 'required',
-            'bank_id' => 'required',
-            'no_invoice' => 'required',
+            'courier' => 'required',
+            'bank' => 'required',
             'alamat' => 'required'
         ]);
 
+        $number = Number::where('id', 1)->get();
+        $angka = ($number[0]->angka)+1;
+        $date = date('dmY');
+        $invoice = "INV-PK-$date-$angka";
+        Number::where('id', 1)->update(['angka'=>$angka]);
+        
         Transaction::create([
-            'courier_id'=>$request->courier_id,
-            'bank_id'=>$request->bank_id,
-            'no_invoice'=>$request->no_invoice,
-            'alamat'=>$request->alamat
+            'no_invoice'=>$invoice,
+            'courier_id'=>$request->courier,
+            'bank_id'=>$request->bank,
+            'alamat'=>$request->alamat,
+            'total'=>$request->subtotal 
         ]);
 
-        return redirect('/transaction');
+        $ongkir = DB::table('couriers')
+        ->select('couriers.*', 'transactions.*')
+        ->join('transactions', 'couriers.id', '=', 'transactions.courier_id')
+        ->where('couriers.id', $request->courier)
+        ->get();
+
+        $transaction = Transaction::where('no_invoice', $invoice)->first();
+        Cart::where('user_id', Auth::user()->id)
+        ->where('aksi', 0)
+        ->update([
+            'transaction_id'=>$transaction->id,
+            // 'aksi'=>1
+        ]);
+
+        $keranjang = Cart::where('user_id', Auth::user()->id)
+        ->where('aksi', 0)
+        ->get();
+        foreach($keranjang as $item)
+        {
+            $product=Product::where('id', $item->product_id)->first();
+            Product::where('id', $item->product_id)->update([
+                'stock_barang'=> $product->stock_barang - $item->kuantitas,
+                'terjual'=> $product->terjual + $item->kuantitas,
+
+            ]);
+        }
+        Cart::where('user_id', Auth::user()->id)
+        ->where('aksi', 0)
+        ->update([
+            'aksi' => 1
+        ]);
+
+        $nama=Auth::user()->name;
+
+        Notification::create([
+            'user_id'=>Auth::user()->id, 
+            'isi'=>'Hello '. $nama.', Selesaikan pembayaran segera,'.$transaction->total.' dengan kode '.$transaction->no_invoice
+        ]); 
+
+        return redirect('/transaction/' .$transaction->id)->with('status', 'berhasil');
     }
 
     /**
@@ -58,9 +111,11 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
-        //
+        $transaction = Transaction::where('id', $id)->get();
+        //return $transaction;
+        return view('payment/index', compact('transaction'));
     }
 
     /**

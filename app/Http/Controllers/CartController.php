@@ -23,8 +23,8 @@ class CartController extends Controller
         $angka = ($number[0]->angka)+1;
         $date = date('dmY');
         $invoice = "INV-PK-$date-$angka";
-        $cart = Cart::all();
-        $subtotal = Cart::where('aksi', 0)->sum('total');
+        $cart = Cart::where('aksi', 0)->where('user_id', Auth::user()->id)->get();
+        $subtotal = Cart::where('aksi', 0)->sum('subtotal');
         $courier = Courier::all();
         $bank = Bank::all();
         return view('landingpage.cart', compact('cart', 'subtotal', 'courier', 'bank'));
@@ -61,15 +61,32 @@ class CartController extends Controller
         $product = Product::Where('id', $request->product_id)->get();
         $total = $product[0]->harga_barang * $request->kuantitas;
         //untuk memasukkan data ke tabel
+
+        $keranjang=Cart::where('user_id', Auth::user()->id)
+        ->where('aksi', 0)->get();
+        foreach($keranjang as $item)
+        {
+            if($request->product_id==$item->product_id)
+            {
+                $product=Product::where('id', $item->product_id)->first();
+                Cart::where('product_id', $item->product_id)->update([
+                    'kuantitas'=>$item->kuantitas + $request->kuantitas,
+                    'subtotal'=>$product->harga_barang * ($item->kuantitas + $request->kuantitas)
+                ]);
+                return redirect()->back();
+            }
+        }
         Cart::create([
             'user_id' =>Auth::user()->id,
             'product_id' =>$request->product_id,
             'kuantitas'=>$request->kuantitas,
-            'total'=>$total,
+            'subtotal'=>$total,
             'aksi'=>0
         ]);
-        return redirect('/cart')->with('status', 'Berhasil Ditambahkan');
-    }
+
+        return redirect()->back();
+    
+}
 
     /**
      * Display the specified resource.
@@ -112,6 +129,7 @@ class CartController extends Controller
             
         ]
         );
+        
 
         Cart::where('id', $cart->id)->update([
             'user_id' =>$request->user_id,

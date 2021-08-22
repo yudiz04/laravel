@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landingpage</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Payment</title>
-    
-        <!-- my css -->
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
-        <link rel="stylesheet" href="{{asset('css/mobile.css')}}">
-    
-        <!-- bootstrap -->
-        <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-        <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.carousel.min.css')}}">
-        <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.theme.default.min.css')}}">
-    
-        <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
-    </head>
+    <!-- my css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mobile.css')}}">
 
-<body>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.theme.default.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
     <!-- Sukses -->
     <section id="sukses">
         <div class="container">
@@ -52,18 +45,3 @@
 
     </section>
     <!-- Akhir Sukses -->
-
-</body>
-
-   <<!-- owl carousel js-->
-   <script src="{{asset('js/jquery.min.js')}}"></script>
-   <script src="{{asset('owlcarousel/owl.carousel.min.js')}}"></script>
-   <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
-   <script src="{{asset('js/myscript.js')}}"></script>
-   <script src="https://unpkg.com/scrollreveal"></script>
-   <!-- <script src="./js/myscrollreveal.js"></script> -->
-   
-   <!-- icon fontawsome -->
-   <script src="https://kit.fontawesome.com/b0b240269b.js" crossorigin="anonymous"></script>
-
-</html>

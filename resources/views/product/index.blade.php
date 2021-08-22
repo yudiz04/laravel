@@ -61,6 +61,9 @@
                       <th style="background-color: #04AA6D";>Harga</th>
                       <th style="background-color: #04AA6D";>Stock</th>
                       <th style="background-color: #04AA6D";>Deskripsi</th>
+                      <th style="background-color: #04AA6D";>Promo</th>
+                      <th style="background-color: #04AA6D";>Rekomendasi</th>
+                      <th style="background-color: #04AA6D";>Terjual</th>
                       <th style="background-color: #04AA6D";>Edit</th>
                       <th style="background-color: #04AA6D";>Hapus</th>
                     </tr>
@@ -75,6 +78,12 @@
                       <td>{{ $item->harga_barang }}</td>
                       <td>{{ $item->stock_barang }}</td>
                       <td>{{ $item->deskripsi_barang }}</td>
+                      
+                      <td><a href="{{url('/promo/'.$item->id)}}">{{ $item->promo=$item->promo==1 ? 'active' : 'unactive'  }}</a></td>
+                     
+                      <td><a href="{{url('/rekomendasi/'.$item->id)}}">{{ $item->rekomendasi=$item->rekomendasi==1 ? 'active' : 'unactive' }}</a></td>
+                      
+                      <td>{{ $item->terjual=$item->terjual==1 ? 'active' : 'unactive' }}</td>
 
                       <td>
                         <a href="{{url('/product/'. $item->id.'/edit')}}"><i class="fas fa-pencil-alt" style="color: #04AA6D"></i></a>

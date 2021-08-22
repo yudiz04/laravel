@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = ['bank_id','courier_id','number_id','no_invoice'];
+    protected $fillable = ['bank_id','courier_id','no_invoice', 'alamat', 'total'];
 
     public function bank(){
         return $this->belongsTo('App\Models\Bank');

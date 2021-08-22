@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTotalToTranscationsTable extends Migration
+class AddColomnToNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTotalToTranscationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('transcations', function (Blueprint $table) {
-            $table->integer('total');
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->integer('status_notification')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddTotalToTranscationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('transcations', function (Blueprint $table) {
-            $table->dropColumn('total');
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->dropColumn('status_notification');
         });
     }
 }

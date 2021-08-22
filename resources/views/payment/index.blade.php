@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Landingpage</title>
 
     <!-- my css -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -17,9 +13,6 @@
     <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.theme.default.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
-</head>
-
-<body>
     
 <!-- Metode -->
 <section id="metode">
@@ -32,12 +25,21 @@
 
         <div class="row row2 bg-light">
             <div class=col-lg-6>
+                <p>Invoice</p>
+            </div>
+            <div class="col-lg">
+                <p>{{$transaction[0]->no_invoice}}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row row2 bg-light">
+            <div class=col-lg-6>
                 <p>Batas Waktu Pembayaran</p>
             </div>
-            <div class="col-lg text-center">
+            <div class="col-lg">
                 <p>12.00 WIB</p>
             </div>
-            <div class="col-lg text-center">
+            <div class="col-lg">
                 <p>12/11/2021</p>
             </div>
         </div>
@@ -46,8 +48,8 @@
             <div class=col-lg-6>
                 <p>Transfer Bank</p>
             </div>
-            <div class="col-lg text-center">
-                <p>10987654321</p>
+            <div class="col-lg">
+                <p>{{$transaction[0]->bank->no_rekening}}</p>
             </div>
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-outline-warning">Salin</button>
@@ -58,8 +60,8 @@
             <div class=col-lg-6>
                 <p>Total Belanja</p>
             </div>
-            <div class="col-lg text-center">
-                <p>10987654321</p>
+            <div class="col-lg">
+                <p>{{$transaction[0]->total}}</p>
             </div>
         </div>
 
@@ -67,8 +69,8 @@
             <div class=col-lg-6>
                 <p>Ongkir</p>
             </div>
-            <div class="col-lg text-center">
-                <p>10987654321</p>
+            <div class="col-lg">
+                <p>{{$transaction[0]->courier->ongkir}}</p>
             </div>
         </div>
 
@@ -76,8 +78,8 @@
             <div class=col-lg-6>
                 <p>Total Pembayaran</p>
             </div>
-            <div class="col-lg text-center">
-                <p>5.550.000,00</p>
+            <div class="col-lg">
+                <p>{{$transaction[0]->total+$transaction[0]->courier->ongkir}}</p>
             </div>
             <div class="col-lg text-center">
                 <button type="button" class="btn btn-outline-warning">Salin</button>
@@ -137,17 +139,3 @@
 </section>
 <!-- Akhir metode -->
 
-</body>
-
-<<!-- owl carousel js-->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('owlcarousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.js')}}"></script>
-<script src="{{asset('js/myscript.js')}}"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<!-- <script src="./js/myscrollreveal.js"></script> -->
-
-<!-- icon fontawsome -->
-<script src="https://kit.fontawesome.com/b0b240269b.js" crossorigin="anonymous"></script>
-
-</html>

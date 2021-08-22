@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <title>@yield('title')</title>
-    @include('template.header')
+    @include('templatefrontend.header')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-    @include('template.navbar')
-    @include('template.sidebar')
+    @include('templatefrontend.navbar')
     @yield('content') 
-    @include('template.footer')
+    @include('templatefrontend.footer')
 </body>
-</html> 
+</html>  

@@ -63,16 +63,17 @@ Route::resource('courier', CourierController::class);
 Route::get('/productPhoto', [ProductController::class, 'createPhoto']);
 Route::post('/productPhoto', [ProductController::class, 'storePhoto']);
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/promo/{product}', [ProductController::class, 'promo']);
+Route::get('/rekomendasi/{product}', [ProductController::class, 'rekomendasi']);
 
 
 });
 
 Route::group(['middleware' => ['authcustomer','customer']], function(){
     Route::resource('cart', CartController::class);
+    Route::get('/transaction/sukses', [TransactionController::class,'sukses']);
     Route::resource('transaction', TransactionController::class);
     
     
     Route::get('list/{product}', [LandingController::class, 'list']);
 });
-
-Route::get('/sukses', [TransactionController::class,'sukses']);

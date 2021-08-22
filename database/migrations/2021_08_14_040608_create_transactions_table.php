@@ -16,20 +16,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('cart_id')
-            ->constrained('carts')
-            ->onDelete('cascade')
-            ->onUpdate('cascade')->nullable();
             $table->foreignId('bank_id')
             ->constrained('banks')
             ->onDelete('cascade')
             ->onUpdate('cascade')->nullable();
             $table->foreignId('courier_id')
             ->constrained('couriers')
-            ->onDelete('cascade')
-            ->onUpdate('cascade')->nullable();
-            $table->foreignId('number_id')
-            ->constrained('numbers')
             ->onDelete('cascade')
             ->onUpdate('cascade')->nullable();
             $table->string('no_invoice')->nullable();
