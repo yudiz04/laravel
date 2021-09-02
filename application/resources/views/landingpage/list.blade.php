@@ -17,10 +17,12 @@
     <link rel="stylesheet" href="{{asset('owlcarousel/assets/owl.theme.default.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
-</head>
+</head> 
 
 <body>
     <!-- Header -->
+    
+
     <section id="header">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">

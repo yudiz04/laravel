@@ -1,3 +1,86 @@
+
+<style>
+.icon {
+    cursor: pointer;
+    margin-right: 50px;
+    line-height: 60px
+}
+
+.icon span {
+    background: #f00;
+    padding: 7px;
+    border-radius: 50%;
+    color: #fff;
+    vertical-align: top;
+    margin-left: -25px
+}
+
+.icon img {
+    display: inline-block;
+    width: 26px;
+    margin-top: 4px
+}
+
+.icon:hover {
+    opacity: .7
+}
+        #box .notification {
+            width: 300px;
+            height: 0px;
+            opacity: 0;
+            position: absolute;
+            top: 63px;
+            right: 62px;
+            border-radius: 5px 0px 5px 5px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    
+        /* .notifications h2 {
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    color: #999
+    }
+    
+    .notifications h2 span {
+    color: #f00
+    } */
+    
+    .notifications-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 6px 9px;
+    margin-bottom: 0px;
+    cursor: pointer
+    }
+    
+    .notifications-item:hover {
+    background-color: #eee
+    }
+    
+    .notifications-item img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-right: 9px;
+    border-radius: 50%;
+    margin-top: 2px
+    }
+    
+    .notifications-item .text h4 {
+    color: #777;
+    font-size: 16px;
+    margin-top: 3px
+    }
+    
+    .notifications-item .text p {
+    color: #aaa;
+    font-size: 12px
+    }
+    </style>
+
+
 <!-- Navbar -->
 <section id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -28,24 +111,22 @@
                 </div>
                 <div class="col-mt-2">
                     @if (Auth::user())
-                    <a class="#" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="icon" href="#" src="{{ asset('assets/notification.svg') }}" width="23px"> </a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach (Keranjang::isi() as $item)
-                            <a class="dropdown-item" href="#">{{ $item->isi }}</a>
-                            <div class="dropdown-divider"></div>
-                        @endforeach
-                    </div>
-
-                   
+                        <div id="notif">
+                            <img src="{{ asset('assets/notification.svg') }}" width="23px"> 
+                        </div>
+                            
+                                @foreach (Keranjang::isi() as $item)
+                                
+                                    <div class="text" id="box">
+                                        <p>{{ $item->isi }}</p>
+                                    </div>
+                                
+                                @endforeach
+            
                         @if (Keranjang::notif() > 0)
-                            <sup><span class="badge badge-pill badge-warning">{{ Keranjang::notif() }}</span></sup>
+                            <sup><span type="button" class="dropdown-toggle badge badge-warning" href="#" id="navbarDropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Keranjang::notif() }}</span></sup>
                         @endif
                     @endif
-
-
                 </div>
 
                 @if (Auth::user())
@@ -110,6 +191,8 @@
         </div>
     </div>
 
+
+
     <div class="modal fade" id="modallogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -140,3 +223,32 @@
 
 </section>
 <!-- Navbar -->
+
+<script>
+    $(document).ready(function(){
+
+    var down = false;
+
+    $('#bell').click(function(e){
+
+    var color = $(this).text();
+
+    if(down){
+
+    $('#box').css('height','0px');
+    $('#box').css('opacity','0'); 
+    down = false;
+    }else{
+
+    $('#box').css('height','auto');
+    $('#box').css('opacity','1');
+    down = true;
+
+    }
+
+    });
+
+    });
+
+</script>
+

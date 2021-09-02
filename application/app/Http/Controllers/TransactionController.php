@@ -7,7 +7,9 @@ use App\Models\Number;
 use App\Models\Cart;
 use App\Models\Notification;
 use App\Models\Product;
+use App\Mail\KirimEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -101,6 +103,13 @@ class TransactionController extends Controller
             'user_id'=>Auth::user()->id, 
             'isi'=>'Hello '. $nama.', Selesaikan pembayaran segera,'.$transaction->total.' dengan kode '.$transaction->no_invoice
         ]); 
+
+        $isi = [
+            'judul' => 'Selesaikan pembayaran anda',
+            'badan' => 'Hello '. $nama.', Selesaikan pembayaran segera,'.$transaction->total.' dengan kode '.$transaction->no_invoice
+        ];
+
+        Mail::to(Auth::user()->email)->send(new \App\Mail\KirimEmail($isi));
 
         return redirect('/transaction/' .$transaction->id)->with('status', 'berhasil');
     }

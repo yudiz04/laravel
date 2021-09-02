@@ -3,7 +3,8 @@
     
 @section('content')
 
-<body> 
+<body>
+ 
     <!-- Banner -->
     <section id="banner">
         <div class="container">
@@ -140,8 +141,14 @@
                     @foreach ($product as $item)
                     <div class="col">
                         <div class="card" style="width: 100%;">
+
+                            @if ($item->photo == null)
+                            <img src="{{asset('dist/img/product.png')}}" class="card-img-top" alt="kamera"
+                                width="100%" height="auto" style="object-fit:cover;">
+                            @else
                             <img src="{{asset('dist/img/' . $item->photo->nama_photo)}}" class="card-img-top" alt="kamera"
                                 width="100%" height="auto" style="object-fit:cover;">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{$item->nama_barang}}</h5>
                                 <p class="card-text">IDR. {{number_format($item->harga_barang,2,',','.')}}</p>

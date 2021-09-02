@@ -22,5 +22,5 @@ class Keranjang{
     $isi = Notification::where('user_id', Auth::user()->id)
         ->where('status_notification', 0)->get();
         return $isi;
-    }
+    } 
 }

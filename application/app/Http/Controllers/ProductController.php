@@ -172,7 +172,7 @@ class ProductController extends Controller
 
     public function createPhoto()
     {
-        return view('product.addPhoto');
+        return view('product.addPhoto'); 
     }
 
     public function storePhoto(Request $request)

@@ -72,7 +72,14 @@
                     @foreach ($product as $item) 
                     <tr>
                       <td>{{ $loop->iteration }}</td>
+                      
+                      @if ($item->photo == null)
+                      <td><img src="{{asset('dist/img/product.png')}}"
+                          width="50" alt=""></td>
+                      @else
                       <td><img src="{{asset('dist/img/' . $item->photo->nama_photo)}}" width="50" alt=""></td>
+                      @endif
+                     
                       <td>{{ $item->category->nama }}</td>
                       <td>{{ $item->nama_barang }}</td>
                       <td>{{ $item->harga_barang }}</td>
