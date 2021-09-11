@@ -13,6 +13,7 @@ use App\Http\Controllers\CourierController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,14 +66,15 @@ Route::post('/productPhoto', [ProductController::class, 'storePhoto']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/promo/{product}', [ProductController::class, 'promo']);
 Route::get('/rekomendasi/{product}', [ProductController::class, 'rekomendasi']);
-
+Route::get('/transaction', [TransactionController::class, 'index']);
+Route::get('/paid/{transaction}', [TransactionController::class, 'paid']);
 
 });
 
 Route::group(['middleware' => ['authcustomer','customer']], function(){
     Route::resource('cart', CartController::class);
     Route::get('/transaction/sukses', [TransactionController::class,'sukses']);
-    Route::resource('transaction', TransactionController::class);
+    Route::resource('transaction', TransactionController::class)->except('index');
     
     
     Route::get('list/{product}', [LandingController::class, 'list']);

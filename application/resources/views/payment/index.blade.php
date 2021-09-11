@@ -95,15 +95,19 @@
             <div class="col-lg-4"></div>
         </div>
 
-        <div class="row">
-            <div class="col-lg text-center">
-                <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal"
-                data-target="#modalupload">Upload</button>
+        <div class="row text-center">
+            <form action="{{ url('/transaction/'.$transaction[0]->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf 
+                @method('patch')
+            <div class="col-lg text-center" >
+                <input type="file" class="form-control" name="struk" id="struk">
+                <button type="submit" class="btn btn-outline-secondary mt-3" data-toggle="modal"
+                data-target="#modalupload" for="struk">Upload</button>
             </div>
-            </div>
+            </form>
         </div>
 
-        <div class="modal fade" id="modalupload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="modalupload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -126,7 +130,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
           
         
         <div class="row">

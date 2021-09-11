@@ -22,7 +22,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        
+        $transaction = Transaction::all();
+        return view('transaction.index', compact('transaction'));
 
     }
 
@@ -62,7 +63,9 @@ class TransactionController extends Controller
             'courier_id'=>$request->courier,
             'bank_id'=>$request->bank,
             'alamat'=>$request->alamat,
-            'total'=>$request->subtotal 
+            'total'=>$request->subtotal,
+            'status_transaksi'=>'unpaid',
+            'user_id'=>Auth::user()->id 
         ]);
 
         $ongkir = DB::table('couriers')
@@ -91,32 +94,45 @@ class TransactionController extends Controller
 
             ]);
         }
+        $keranjang=Cart::where('aksi', 0)
+        ->where('user_id', Auth::user()->id)
+        ->get();
+
+
+        $nama=Auth::user()->name;
+
+        Notification::create([
+            'user_id'=>Auth::user()->id, 
+            'isi'=>'Hello '. $nama.', Selesaikan pembayaran segera, '.$transaction->total.' dengan kode '.$transaction->no_invoice,
+            'title'=>'Silahkan lakukan pembayaran'
+        ]); 
+
+        $isi = [
+            'invoice'=>$transaction->no_invoice, 
+            'nama'=>$nama,
+            'alamat'=>$transaction->alamat,
+            'bank'=>$transaction->bank->bank,
+            'no_rek'=>$transaction->bank->no_rek,
+            'keranjang'=>$keranjang,
+            'ongkir'=>$transaction->courier->ongkir,
+            'total'=>$transaction->total
+            
+        ];
+
+        Mail::to(Auth::user()->email)->send(new \App\Mail\KirimEmail($isi));
+
         Cart::where('user_id', Auth::user()->id)
         ->where('aksi', 0)
         ->update([
             'aksi' => 1
         ]);
 
-        $nama=Auth::user()->name;
-
-        Notification::create([
-            'user_id'=>Auth::user()->id, 
-            'isi'=>'Hello '. $nama.', Selesaikan pembayaran segera,'.$transaction->total.' dengan kode '.$transaction->no_invoice
-        ]); 
-
-        $isi = [
-            'judul' => 'Selesaikan pembayaran anda',
-            'badan' => 'Hello '. $nama.', Selesaikan pembayaran segera,'.$transaction->total.' dengan kode '.$transaction->no_invoice
-        ];
-
-        Mail::to(Auth::user()->email)->send(new \App\Mail\KirimEmail($isi));
-
         return redirect('/transaction/' .$transaction->id)->with('status', 'berhasil');
     }
 
     /**
      * Display the specified resource.
-     *
+     * 
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
@@ -135,7 +151,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        // 
     }
 
     /**
@@ -147,7 +163,17 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $img = $request->file('struk');
+        $nama_file = time()."_".$img->getClientOriginalName();
+        $img->move('public/dist/img',$nama_file); //proses upload foto ke laravel
+        
+    
+
+        Transaction::where('id', $transaction->id)->update([
+            'struk'=>$nama_file
+        ]);
+
+        return redirect('/');
     }
 
     /**
@@ -163,5 +189,34 @@ class TransactionController extends Controller
 
     public function sukses(){
         return view('payment/sukses');
+    }
+    
+    public function paid(Transaction $transaction){
+        $status=$transaction->status_transaksi=='unpaid' ? 'paid':'unpaid';
+        Transaction::where('id', $transaction->id)->update(['status_transaksi'=>$status]);
+
+        $nama=$transaction->user->name;  
+        Notification::create([
+            'user_id'=>$transaction->user_id, 
+            'isi'=>'Hello '. $nama.', Pembayaran terverifikasi, '.$transaction->total.' dengan kode '.$transaction->no_invoice,
+            'title'=>'Pembayaran terverifikasi'
+        ]);
+        $keranjang=Cart::where('aksi', 0)
+        ->where('user_id', $transaction->user->id)
+        ->get();
+
+        $isi = [
+            'invoice'=>$transaction->no_invoice, 
+            'nama'=>$nama,
+            'alamat'=>$transaction->alamat,
+            'bank'=>$transaction->bank->bank,
+            'no_rek'=>$transaction->bank->no_rek,
+            'keranjang'=>$keranjang,
+            'ongkir'=>$transaction->courier->ongkir,
+            'total'=>$transaction->total
+            
+        ]; 
+        Mail::to($transaction->user->email)->send(new \App\Mail\KirimEmail($isi));
+        return redirect()->back();
     }
 }

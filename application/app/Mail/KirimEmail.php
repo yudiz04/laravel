@@ -29,6 +29,6 @@ class KirimEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject(('PasarKu Terbaik'))->view('email.index');
+        return $this->markdown('email.invoice')->with('isi', $this->isi);
     }
 }

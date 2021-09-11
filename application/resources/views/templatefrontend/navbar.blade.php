@@ -111,18 +111,11 @@
                 </div>
                 <div class="col-mt-2">
                     @if (Auth::user())
-                        <div id="notif">
-                            <img src="{{ asset('assets/notification.svg') }}" width="23px"> 
-                        </div>
-                            
-                                @foreach (Keranjang::isi() as $item)
-                                
-                                    <div class="text" id="box">
-                                        <p>{{ $item->isi }}</p>
-                                    </div>
-                                
-                                @endforeach
-            
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                            <img src="{{ asset('assets/notification.svg') }}" width="23px">
+                        </button>
+                             
                         @if (Keranjang::notif() > 0)
                             <sup><span type="button" class="dropdown-toggle badge badge-warning" href="#" id="navbarDropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Keranjang::notif() }}</span></sup>
                         @endif
@@ -191,8 +184,6 @@
         </div>
     </div>
 
-
-
     <div class="modal fade" id="modallogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -220,6 +211,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal notification-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Notifications</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            <div class="modal-body">
+                @if (Auth::user())
+                @foreach (Keranjang::isi() as $item)
+                <h5>{{$item->title}}</h5>
+                <p>{{$item->isi}}</p>
+                <hr>  
+                @endforeach 
+                @endif
+                
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </section>
 <!-- Navbar -->

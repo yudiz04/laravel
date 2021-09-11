@@ -23,4 +23,6 @@ class Keranjang{
         ->where('status_notification', 0)->get();
         return $isi;
     } 
+
+     
 }
